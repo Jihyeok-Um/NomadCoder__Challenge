@@ -1,0 +1,36 @@
+body {
+    background-color: tomato;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.biggest-box {
+    background-color: wheat;
+    height: 300px;
+    width: 300px;
+    border: 3px solid black;
+}
+
+.biggest-box__column {
+    height: 100px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-box {
+    border: 3px solid white;
+    background-color: #008080;
+    height: 60px;
+    width: 60px;
+}
+
+.long-box {
+    border: 4px dashed white;
+    background-color: #008080;
+    height: 70px;
+    width: 250px;
+}
