@@ -1,0 +1,44 @@
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+main {
+    height: 769px;
+    width: 340px;
+    background-color: #f7f7f7;
+}
+
+.margin__side {
+    padding-left: 15px;
+}
+
+.bookOfTheDay__star {
+    font-size: 12px;
+    margin-right: 3px;
+}
+
+.topAdventures__star {
+    font-size: 3px;
+}
+
+.star-full {
+    color: #ffce33;
+}
+
+.star-empty {
+    color: lightgray;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.content {
+    display: flex;
+}

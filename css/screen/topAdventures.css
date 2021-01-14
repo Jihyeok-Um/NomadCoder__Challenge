@@ -1,0 +1,21 @@
+.topAdventures__contents {
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.topAdventures__img-box {
+    margin-right: 15px;
+}
+
+.topAdventures__img {
+    height: 108px;
+    width: 75px;
+    background-color: tomato;
+    border-radius: 15px;
+}
+
+.topAdventures__star-box {
+    display: flex;
+    justify-content: center;
+}
