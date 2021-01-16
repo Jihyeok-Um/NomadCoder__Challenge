@@ -1,6 +1,14 @@
-@import "component/component.css";
-@import "screen/header.css";
-@import "screen/search-bar.css";
-@import "screen/bookOfTheDay.css";
-@import "screen/topAdventures.css";
-@import "screen/popularAuthors.css";
+
+@import "screen/profile-screen.css";
+@import "screen/player-screen.css";
+
+@import "component/nav-bar.css";
+@import "component/status-bar.css";
+
+@import "variable.css";
+@import "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap');
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
