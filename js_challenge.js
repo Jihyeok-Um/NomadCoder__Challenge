@@ -1,43 +1,53 @@
-// <⚠️ DONT DELETE THIS ⚠️>
-//import "./styles.css";
-const colors = ["#1abc9c", "#3498db", "#9b59b6", "#f39c12", "#e74c3c"];
-// <⚠️ /DONT DELETE THIS ⚠️>
+const christmasTimerHtml = document.querySelector(".js_christmasTimer");
+const hourMinuteCount = 60;
+const dayCount = 24;
 
-/*
-✅ The text of the title should change when the mouse is on top of it.
-✅ The text of the title should change when the mouse is leaves it.
-✅ When the window is resized the title should change.
-✅ On right click the title should also change.
-✅ The colors of the title should come from a color from the colors array.
-✅ DO NOT CHANGE .css, or .html files.
-✅ ALL function handlers should be INSIDE of "superEventHandler"
-*/
-const title = document.querySelector(".title");
+var _second = 1000;
+var _minute = _second * 60; 
+var _hour = _minute * 60; 
+var _day = _hour * 24; 
 
-const superEventHandler = {
-    mouseOnHandler: function() {
-        title.innerHTML = "The mouse is here!";
-        title.style.color = colors[0];
-    },
-    mouseOffHandler: function() {
-        title.innerHTML = "The mouse is gone!";
-        title.style.color = colors[1];
-    },
-    resizingHandler: function() {
-        title.innerHTML = "You just resized!";
-        title.style.color = colors[2];
-    },
-    rightClickHandler: function() {
-        title.innerHTML = "That was a right click!";
-        title.style.color = colors[3];
+const months = [
+    jan = 31,feb = 28, mar = 31,apr = 30,may = 31,jun = 30, jul = 31, aug = 31,sep = 30,oct = 31,nov = 30,dec = 31,
+]
+
+function monthsToDays(num) {
+    let month = 0;
+    for(let i = 0; i < num; i++){
+        month += months[i];
     }
-};
-
-function init() {
-    title.addEventListener("mouseenter", superEventHandler.mouseOnHandler);
-    title.addEventListener("mouseleave", superEventHandler.mouseOffHandler);
-    window.addEventListener("contextmenu", superEventHandler.rightClickHandler);
-    window.addEventListener("resize", superEventHandler.resizingHandler);
+    return month;
 }
 
+function timeToSeconds(months, days, hours, minutes) {
+    let seconds = 0;
+    seconds += months*dayCount*hourMinuteCount*hourMinuteCount;
+    seconds += (days-1)*dayCount*hourMinuteCount*hourMinuteCount;
+    seconds += (hours)*hourMinuteCount;
+    seconds += (minutes)*hourMinuteCount*hourMinuteCount;
+    return seconds;
+}
+
+function christmasTimer() {
+    const date = new Date();
+    const nowSeconds = date.getSeconds();
+    const currentMonth = monthsToDays(date.getMonth());
+    const targetMonth = monthsToDays(11);
+
+    const now = nowSeconds + timeToSeconds(currentMonth,date.getDate(),date.getHours(),date.getMinutes());
+    const christmas = timeToSeconds(targetMonth,24,0,0);
+    const timer = christmas - now;
+
+    var days = Math.floor(timer / _day); 
+    var hours = Math.floor((timer % _day) / _hour); 
+    var minutes = Math.floor((timer % _hour) / _minute); 
+    var seconds = Math.floor((timer % _minute) / _second);
+    
+    christmasTimerHtml.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+function init() {
+    christmasTimer();
+    setInterval(christmasTimer, 1000);
+}
 init();
