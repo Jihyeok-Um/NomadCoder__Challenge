@@ -7,14 +7,17 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>Where are you from?</h1>
-    <select>
-      <option value="">--- Choose Your Country ---</option>
-      <option class="Korea" value="Korea">Korea</option>
-      <option class="Greece" value="Greece">Greece</option>
-      <option class="Turkey" value="Turkey">Turkey</option>
-      <option class="Finland" value="Finland">Finland</option>
-    </select>
-    <script src="index.js"></script>
+  <h1 class="title">Task</h1>
+  <form class="js-toDoForm">
+    <input class="js-toDoInput" type="text" placeholder="write todolist.."/>
+  </form>
+  <h2>Pending</h2>
+  <ul class="js-toDoList">
+  </ul>
+
+  <h2>Finished</h2>
+  <ul class="js-finishedList">
+  </ul>
+  <script src="index.js"></script>
 </body>
 </html>
