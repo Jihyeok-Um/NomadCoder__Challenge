@@ -55,6 +55,7 @@ function deleteFinished(event) {
         return toDo.id !== parseInt(li.id);
     });
     finshedToDos = cleanToDos;
+    console.log("WTF");
     saveToDos();
 }
 
@@ -69,20 +70,19 @@ function paintToDos(text, whereAppend) {
     const clearBtn = document.createElement("button");
     const span = document.createElement("span");
     let newId = 0;
-    if(whereAppend === toDoList) {
-        if(toDos.length === 0){
-            newId = 1;
-        }
-        else {
-            newId = toDos[toDos.length-1].id + 1;
-        }
+    
+    if(toDos.length + finshedToDos.length === 0){
+        newId = 0;
     }
     else {
         if(finshedToDos.length === 0){
-            newId = 1;
+            newId = toDos[toDos.length-1].id + 1;
+        }
+        else if(toDos.length === 0){
+            newId = finshedToDos[finshedToDos.length-1].id + 1;
         }
         else {
-            newId = finshedToDos[finshedToDos.length-1].id + 1;
+            newId = toDos[toDos.length-1].id + finshedToDos[finshedToDos.length-1].id + 1;
         }
     }
 
