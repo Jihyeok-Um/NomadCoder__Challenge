@@ -1,157 +1,41 @@
-const toDoForm = document.querySelector(".js-toDoForm"),
-  toDoInput = toDoForm.querySelector("input"),
-  toDoList = document.querySelector(".js-toDoList"),
-  finishedList = document.querySelector(".js-finishedList");
+const submitBtn = document.querySelector(".submitBtn");
+const numberBar = document.querySelector(".numberBar");
+const numberVers = document.querySelector(".numberVers");
+const selectedRange = document.querySelector(".selectedRange");
+const inputNumber = document.querySelector(".inputNumber");
+const result = document.querySelector(".result");
 
-const FINISHED_LS = "finished";
-const TODOS_LS = "toDos";
-let toDos = [];
-let finshedToDos = [];
-
-function toFinishedToDo(event) {
-    const btn = event.target;
-    const li = btn.parentNode;
-    const text = li.firstChild.innerText;
-    toDoList.removeChild(li);
-    const cleanToDos = toDos.filter(function(toDo) {
-        return toDo.id !== parseInt(li.id);
-    });
-    toDos = cleanToDos;
-    saveToDos();
-
-    paintToDos(text, finishedList);
-}
-
-function toToDoList(event) {
-    const btn = event.target;
-    const li = btn.parentNode;
-    const text = li.firstChild.innerText;
-    finishedList.removeChild(li);
-    const cleanToDos = finshedToDos.filter(function(toDo) {
-        return toDo.id !== parseInt(li.id);
-    });
-    finshedToDos = cleanToDos;
-    saveToDos();
-
-    paintToDos(text, toDoList);
-}
-
-function deleteToDo(event) {
-    const btn = event.target;
-    const li = btn.parentNode;
-    toDoList.removeChild(li);
-    const cleanToDos = toDos.filter(function(toDo) {
-        return toDo.id !== parseInt(li.id);
-    });
-    toDos = cleanToDos;
-    saveToDos();
-}
-
-function deleteFinished(event) {
-    const btn = event.target;
-    const li = btn.parentNode;
-    finishedList.removeChild(li);
-    const cleanToDos = finshedToDos.filter(function(toDo) {
-        return toDo.id !== parseInt(li.id);
-    });
-    finshedToDos = cleanToDos;
-    console.log("WTF");
-    saveToDos();
-}
-
-function saveToDos() {
-      localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
-      localStorage.setItem(FINISHED_LS, JSON.stringify(finshedToDos));
-}
-
-function paintToDos(text, whereAppend) {
-    const li = document.createElement("li");
-    const delBtn = document.createElement("button");
-    const clearBtn = document.createElement("button");
-    const span = document.createElement("span");
-    let newId = 0;
-    
-    if(toDos.length + finshedToDos.length === 0){
-        newId = 0;
-    }
-    else {
-        if(finshedToDos.length === 0){
-            newId = toDos[toDos.length-1].id + 1;
-        }
-        else if(toDos.length === 0){
-            newId = finshedToDos[finshedToDos.length-1].id + 1;
-        }
-        else {
-            newId = toDos[toDos.length-1].id + finshedToDos[finshedToDos.length-1].id + 1;
-        }
-    }
-
-    delBtn.innerText = "❌";
-    if (whereAppend === toDoList) {
-        clearBtn.innerText = "✔️";
-    } else {
-        clearBtn.innerText = "⬅️";
-    }
-
-    if (whereAppend === toDoList) {
-        delBtn.addEventListener("click", deleteToDo);
-    } else {
-        delBtn.addEventListener("click", deleteFinished);
-    }
-
-    if (whereAppend === toDoList) {
-        clearBtn.addEventListener("click", toFinishedToDo); 
-    } else {
-        clearBtn.addEventListener("click", toToDoList); 
-    }
-
-    span.innerText = text;
-    li.appendChild(span);
-    li.appendChild(delBtn);
-    li.appendChild(clearBtn);
-    li.id = newId;
-    whereAppend.appendChild(li);
-
-    const toDoObj = {
-        text: text,
-        id: newId
-    };
-
-    if (whereAppend === toDoList) {
-        toDos.push(toDoObj);
-    } else {
-        finshedToDos.push(toDoObj);
-    }
-    saveToDos();
+function handledrag(event) {
+    selectedRange.innerText = `Generate a number between 0 and ${numberBar.value}`;
 }
 
 function handleSubmit(event) {
-  event.preventDefault();
-  const currentValue = toDoInput.value;
-  paintToDos(currentValue, toDoList);
-  toDoInput.value = "";
+    event.preventDefault();
+    paintResult();
+}
+function paintResult() {
+    numberVers.classList.remove("hidden");
+    result.classList.remove("hidden");
+    const RAMDOM_RANGE = numberBar.value;
+    const myNum = inputNumber.value;
+    const machineNum = genRandNumber(RAMDOM_RANGE);
+    numberVers.innerText = `You chose: ${myNum}, the machine chose: ${machineNum}.`
+    console.log(myNum, machineNum);
+    if(parseInt(myNum) === parseInt(machineNum)) {
+        result.innerText = "You Won!"
+    } else {
+        result.innerText = "You lost!"
+    }
 }
 
-function loadToDos() {
-  const loadedToDos = localStorage.getItem(TODOS_LS);
-  if (loadedToDos !== null) {
-    const parsedToDos = JSON.parse(loadedToDos);
-    parsedToDos.forEach(function something(toDo) {
-        paintToDos(toDo.text, toDoList);
-    });
-  }
-
-  const loadedFinshedToDos = localStorage.getItem(FINISHED_LS);
-  if (loadedFinshedToDos !== null) {
-      const parsedFinishedToDos = JSON.parse(loadedFinshedToDos);
-      parsedFinishedToDos.forEach(function something(toDo) {
-        paintToDos(toDo.text, finishedList);
-    });
-  }
+function genRandNumber(RAMDOM_RANGE) {
+    const num = Math.floor(Math.random() * RAMDOM_RANGE);
+    return num;
 }
 
 function init() {
-  loadToDos();
-  toDoForm.addEventListener("submit", handleSubmit);
+    selectedRange.innerText = `Generate a number between 0 and ${numberBar.value}`;
+    submitBtn.addEventListener("click", handleSubmit);
+    numberBar.addEventListener("input", handledrag);
 }
 init();

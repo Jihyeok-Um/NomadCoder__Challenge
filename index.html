@@ -7,17 +7,17 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <h1 class="title">Task</h1>
-  <form class="js-toDoForm">
-    <input class="js-toDoInput" type="text" placeholder="write todolist.."/>
+  <h1>Random Number Game</h1>
+  <h2 class="selectedRange"></h2>
+  <input class="numberBar" type="range" min="0" max="200" step="5">
+  <form>
+    <span>Guess the number:</span>
+    <input class="inputNumber" type="text">
+    <input class="submitBtn" type="submit" value="play!">
   </form>
-  <h2>Pending</h2>
-  <ul class="js-toDoList">
-  </ul>
+    <div class="numberVers hidden">You chose: 00, the machine chose: 00.</div>
+    <div class="result hidden">You lost!</div>
 
-  <h2>Finished</h2>
-  <ul class="js-finishedList">
-  </ul>
   <script src="index.js"></script>
 </body>
 </html>
