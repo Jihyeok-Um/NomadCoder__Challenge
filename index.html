@@ -7,17 +7,35 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <h1>Random Number Game</h1>
-  <h2 class="selectedRange"></h2>
-  <input class="numberBar" type="range" min="0" max="200" step="5">
-  <form>
-    <span>Guess the number:</span>
-    <input class="inputNumber" type="text">
-    <input class="submitBtn" type="submit" value="play!">
-  </form>
-    <div class="numberVers hidden">You chose: 00, the machine chose: 00.</div>
-    <div class="result hidden">You lost!</div>
-
+  <main class="calculator__body">
+    <div class="column">
+      <span class="calculator__numberBar"></span>
+      <button id="c" class="button small__button lightgray__button">C</button>
+    </div>
+    <div class="column">
+      <button id="7" class="button small__button gray__button">7</button>
+      <button id="8" class="button small__button gray__button">8</button>
+      <button id="9" class="button small__button gray__button">9</button>
+      <button id="+" class="button small__button orange__button">+</button>
+    </div>
+    <div class="column">
+      <button id="4" class="button small__button gray__button">4</button>
+      <button id="5" class="button small__button gray__button">5</button>
+      <button id="6" class="button small__button gray__button">6</button>
+      <button id="-" class="button small__button orange__button">-</button>
+    </div>
+    <div class="column">
+      <button id="1" class="button small__button gray__button">1</button>
+      <button id="2" class="button small__button gray__button">2</button>
+      <button id="3" class="button small__button gray__button">3</button>
+      <button id="*" class="button small__button orange__button">*</button>
+    </div>
+    <div class="column">
+      <button id="0" class="button big__button gray__button">0</button>
+      <button id="=" class="button small__button gray__button">=</button>
+      <button id="/" class="button small__button orange__button">/</button>
+    </div>
+  </main>
   <script src="index.js"></script>
 </body>
 </html>

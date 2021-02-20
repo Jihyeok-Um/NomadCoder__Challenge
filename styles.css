@@ -1,7 +1,75 @@
-.inputNumber {
-    width: 50px;
+body {
+    display: flex;
+    justify-content:center;
+    height: 100vh;
+    align-items: center;
+    background-color: black;
 }
 
-.hidden {
-    display: none;
+main {
+    background-color: black;
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator__numberBar {
+    display: flex;
+    width: 467px;
+    margin-right: 20px;
+    height: 60px;
+    background-color: black;
+    border: black;
+    color: white;
+    font-size:40px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.calculator__numberBar:focus-within {
+    outline: none;
+}
+
+.button {
+    justify-content:center;
+    align-items: center;
+    color: white;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    border-radius: 15px;
+    border: black;
+    font-size: 20px;
+}
+
+.button:focus-within {
+    outline: none;
+}
+
+.button:active {
+    filter: brightness(50%);
+}
+
+.small__button {
+    width: 155px;
+    height: 60px;
+}
+
+.big__button {
+    width: 315px;
+    height: 60px;
+}
+
+.gray__button {
+    background-color: #363439;
+}
+
+.lightgray__button {
+    background-color: #a7aab1;
+}
+
+.orange__button {
+    background-color: #ff8202;
 }
